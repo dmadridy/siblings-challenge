@@ -11,6 +11,8 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import { useState, useEffect } from "react";
+import { useDebounce } from "@/hooks/use-debounce";
 
 import {
   Table,
@@ -21,7 +23,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
 
@@ -36,6 +37,9 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const debouncedSearchValue = useDebounce(searchValue, 500);
 
   const table = useReactTable({
     data,
@@ -52,18 +56,18 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  useEffect(() => {
+    table.getColumn("clientName")?.setFilterValue(debouncedSearchValue);
+  }, [debouncedSearchValue, table]);
+
   return (
     <div>
       <div className="flex items-center justify-between">
         <div className="flex items-center py-4">
           <Input
             placeholder="Search by client name..."
-            value={
-              (table.getColumn("clientName")?.getFilterValue() as string) ?? ""
-            }
-            onChange={(event) =>
-              table.getColumn("clientName")?.setFilterValue(event.target.value)
-            }
+            value={searchValue}
+            onChange={(event) => setSearchValue(event.target.value)}
             className="max-w-sm"
           />
         </div>
