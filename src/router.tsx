@@ -1,71 +1,23 @@
-import {
-  Link,
-  Outlet,
-  RouteObject,
-  createBrowserRouter,
-} from "react-router-dom";
-import AuthLayout from "./components/layout/auth-layout";
+import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
-import PageNotFound from "./pages/page-not-found";
-import NoAuthLayout from "./components/layout/no-auth-layout";
-import LogIn from "./pages/log-in";
-import AuthGuardian from "./components/layout/auth-guardian";
-import GuestGuardian from "./components/layout/guest-guardian";
-import Flights from "./pages/flights";
-
-const authRoutes: RouteObject[] = [
-  {
-    element: (
-      <AuthGuardian>
-        <AuthLayout>
-          <Outlet />
-        </AuthLayout>
-      </AuthGuardian>
-    ),
-    children: [
-      {
-        id: "dashboard",
-        path: "dashboard",
-        element: <Dashboard />,
-        handle: { crumb: () => <Link to="/dashboard">Dashboard</Link> },
-        children: [
-          {
-            id: "flights",
-            path: "flights",
-            element: <Flights />,
-            handle: { crumb: () => <span>Flights</span> },
-          },
-        ],
-      },
-    ],
-  },
-];
-
-const noAuthRoutes: RouteObject[] = [
-  {
-    element: (
-      <GuestGuardian>
-        <NoAuthLayout>
-          <Outlet />
-        </NoAuthLayout>
-      </GuestGuardian>
-    ),
-    children: [
-      {
-        id: "log-in",
-        index: true,
-        element: <LogIn />,
-      },
-    ],
-  },
-];
+import Root from "./components/layout/root";
+import Details from "./pages/details";
 
 export const router = createBrowserRouter([
   {
-    id: "root",
     path: "/",
-    element: <Outlet />,
-    errorElement: <PageNotFound />,
-    children: [...authRoutes, ...noAuthRoutes],
+    element: <Root />,
+    children: [
+      {
+        id: "dashboard",
+        element: <Dashboard />,
+        index: true,
+      },
+      {
+        id: "company-details",
+        path: "company-details/:id",
+        element: <Details />,
+      },
+    ],
   },
 ]);

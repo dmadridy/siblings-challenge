@@ -1,14 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
+import { data } from "@/lib/constants";
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
 
 export default function Dashboard() {
-  const { logout } = useAuth0();
-
   return (
-    <div>
-      <Link to="flights">Flights</Link>
-      <Button onClick={() => logout()}>Log Out</Button>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-bold">Clients</h1>
+      <DataTable columns={columns} data={data} />
     </div>
   );
 }
