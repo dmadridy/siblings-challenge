@@ -6,16 +6,9 @@ A modern web application built with React, TypeScript, and Vite for managing med
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/medical-case-management.git
-
-# Navigate to project directory
-cd medical-case-management
 
 # Install dependencies
 npm install
-
-# Create a .env file (optional)
-cp .env.example .env
 
 # Start development server
 npm run dev
