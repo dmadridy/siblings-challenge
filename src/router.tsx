@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import Root from "./components/layout/root";
 import Details from "./pages/details";
+import NotFound from "./pages/not-found";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ export const router = createBrowserRouter([
         id: "company-details",
         path: "company-details/:id",
         element: <Details />,
+      },
+      {
+        id: "not-found",
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

@@ -1,12 +1,19 @@
 import { useSidebar } from "@/components/ui/sidebar";
-import { MenuIcon } from "lucide-react";
-
+import { MenuIcon, PanelLeftClose } from "lucide-react";
+import { cn } from "@/lib/utils";
 export function CustomTrigger() {
   const { toggleSidebar, open } = useSidebar();
 
   return (
-    <button className="w-fit" onClick={toggleSidebar}>
-      <MenuIcon className={open ? "text-violet-500 duration-200" : ""} />
+    <button
+      onClick={toggleSidebar}
+      className={cn("text-violet-800", open ? "px-1" : "")}
+    >
+      {open ? (
+        <PanelLeftClose className="transition-transform duration-200" />
+      ) : (
+        <MenuIcon className="transition-transform duration-200" />
+      )}
     </button>
   );
 }

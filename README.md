@@ -1,50 +1,87 @@
-# React + TypeScript + Vite
+# Medical Case Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application built with React, TypeScript, and Vite for managing medical cases and client information.
 
-Currently, two official plugins are available:
+## Quick Start 🚀
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/medical-case-management.git
 
-## Expanding the ESLint configuration
+# Navigate to project directory
+cd medical-case-management
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Install dependencies
+npm install
 
-- Configure the top-level `parserOptions` property like this:
+# Create a .env file (optional)
+cp .env.example .env
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+# Start development server
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Then visit `http://localhost:5173` in your browser.
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+### Requirements
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
+- Node.js 18.0 or higher
+- npm 9.0 or higher
+
+### Available Scripts
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Format code
+npm run format
+
+# Lint code
+npm run lint
 ```
+
+## Overview
+
+This application helps manage medical cases with features including:
+
+## Tech Stack
+
+- **Frontend Framework:** React 18 with TypeScript
+- **Build Tool:** Vite
+- **Routing:** React Router v6
+- **UI Components:**
+  - Radix UI (Accessible component primitives)
+  - Tailwind CSS (Styling)
+  - Shadcn/ui (Component library)
+- **Table Management:** TanStack Table
+- **Form Handling:** React Hook Form
+- **Date Handling:** date-fns
+- **Styling Utilities:**
+  - clsx
+  - tailwind-merge
+  - class-variance-authority
+
+## Technical Decisions
+
+### State Management
+
+The application currently doesn't implement any global state management library (like Zustand) since:
+
+- All state is handled locally within components
+- No complex state sharing between components is required
+- Props drilling is minimal
+- Context API is sufficient for theme management
+
+### Testing
+
+Test coverage was not implemented in this phase due to:
+
+- Time constraints in initial development
+- Focus on core functionality and UI implementation
